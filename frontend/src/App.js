@@ -13,7 +13,7 @@ function App() {
 
   const completeTodo = async (id) => {
     const data = await fetch(
-      `${process.env.REACT_APP_API_URL}/todo/complete/${id}`,
+      `${process.env.REACT_APP_API_URL}/api/todo/complete/${id}`,
       {
         method: 'PUT',
       }
@@ -31,7 +31,7 @@ function App() {
 
   const deleteTodo = async (id) => {
     const data = await fetch(
-      `${process.env.REACT_APP_API_URL}/todo/delete/${id}`,
+      `${process.env.REACT_APP_API_URL}/api/todo/delete/${id}`,
       {
         method: 'DELETE',
       }
@@ -40,7 +40,7 @@ function App() {
   }
 
   const addTodo = async () => {
-    const data = await fetch(`${process.env.REACT_APP_API_URL}/todo/new`, {
+    const data = await fetch(`${process.env.REACT_APP_API_URL}/api/todo/new`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
