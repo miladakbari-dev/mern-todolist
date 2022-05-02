@@ -4,11 +4,20 @@ function App() {
   const [todos, setTodos] = useState([])
   const [popupActive, setPopupActive] = useState(false)
   const [newTodo, setNewTodo] = useState('')
+  const [isFetching, setIsFetching] = useState(true)
+
   const getTodos = () => {
+    setIsFetching(true)
     fetch(`${process.env.REACT_APP_API_URL}/api/todos`)
       .then((res) => res.json())
-      .then((data) => setTodos(data))
-      .catch((err) => console.error(err))
+      .then((data) => {
+        setTodos(data)
+        setIsFetching(false)
+      })
+      .catch((err) => {
+        console.error(err)
+        setTodosFetched(false)
+      })
   }
 
   const completeTodo = async (id) => {
@@ -64,7 +73,33 @@ function App() {
       <h1>Welcome Milad</h1>
       <h4>Your tasks</h4>
 
-      {todos.length === 0 && (
+      {isFetching && (
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <div style={{ position: 'absolute', top: '50%' }}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginBottom: '10px',
+                fontSize: '20px',
+              }}
+            >
+              <div>Wait. I am loading your data 😜</div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {todos.length === 0 && !isFetching && (
         <div
           style={{
             width: '100%',
@@ -90,6 +125,7 @@ function App() {
           </div>
         </div>
       )}
+
       <div className="todos">
         {todos.map((todo) => (
           <div
