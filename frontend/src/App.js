@@ -16,7 +16,7 @@ function App() {
       })
       .catch((err) => {
         console.error(err)
-        setTodosFetched(false)
+        setIsFetching(false)
       })
   }
 
@@ -93,7 +93,7 @@ function App() {
                 fontSize: '20px',
               }}
             >
-              <div>Wait. I am loading your data 😜</div>
+              Wait. I am loading your data 😜
             </div>
           </div>
         </div>
