@@ -5,7 +5,7 @@ function App() {
   const [popupActive, setPopupActive] = useState(false)
   const [newTodo, setNewTodo] = useState('')
   const getTodos = () => {
-    fetch(`${process.env.REACT_APP_API_URL}/todos`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/todos`)
       .then((res) => res.json())
       .then((data) => setTodos(data))
       .catch((err) => console.error(err))
